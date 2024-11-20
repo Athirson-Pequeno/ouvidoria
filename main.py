@@ -7,21 +7,22 @@ nomeTabela = "manifestacao"
 opcao = "1"
 manifestacoes = []
 
+#Cria um looping de repetição (usando while) que exibe o menu, esse menu aparece enquanto o usuario não esolhe a opção de sair (opção 7)
 while opcao != "7":
     opcao = input("\nO que deseja fazer? \n"
                   "\n• 1) Listagem das manifestações."
                   "\n• 2) Criar uma nova manifestação."
                   "\n• 3) Exibir quantidade de manifestações."
-                  "\n• 4) Pesquisar uma manifestação pela categoria."
+                  "\n• 4) Pesquisar manifestações pela categoria."
                   "\n• 5) Pesquisar uma manifestação por código."
-                  "\n• 6) Excluir uma Manifestação pelo código."
+                  "\n• 6) Excluir uma manifestação pelo código."
                   "\n• 7) Sair do sistema.\n    » ")
 
     if opcao == "1":
         listarManifestacoes(conexao)
 
     elif opcao == "2":
-        cadastrarNovaManifestacoes(conexao)
+        cadastrarNovaManifestacao(conexao)
 
     elif opcao == "3":
         quantidadeDeManifestacoes(conexao)
