@@ -1,6 +1,6 @@
 from operacoesDB import *
 
-LISTA_CATEGORIAS = ('Reclamação', 'Sugestão')
+LISTA_CATEGORIAS = ('Reclamação', 'Sugestão', 'Elogio')
 
 
 # Printa os itens no terminal
