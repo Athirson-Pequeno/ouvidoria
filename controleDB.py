@@ -151,7 +151,7 @@ def excluirManifestacaoPeloCodigo(conexao):
             qtdLinhasAfetadas = excluirBancoDados(conexao, "DELETE FROM manifestacoes WHERE codigo = %s;",
                                                   [codigoDaManifestacao])
             # Se as linhas afetadas forem maior que 1 ele mostra ao usuario o sucesso
-            if qtdxLinhasAfetadas > 0:
+            if qtdLinhasAfetadas > 0:
                 print("Manifestação excluída com sucesso!")
             else:
                 print("Não existe nenhuma manifestação associada a esse código")
