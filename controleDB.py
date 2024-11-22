@@ -105,15 +105,13 @@ def buscarManifestacaoPeloCodigo(conexao):
         manifestacoes = listarBancoDados(conexao, "SELECT * FROM manifestacoes WHERE codigo = %s;",
                                          [codigoDaManifestacao])
 
-        # Verifica se o codigo digitado não é vazio
-        if codigoDaManifestacao != "":
             # Se tiver uma manifestação ou mais cadastrada ele exibe para o usuário
-            if len(manifestacoes) > 0:
-                exibirListaFormatada(manifestacoes)
-            else:
-                print("Não existe nenhuma manifestação associada a esse código")
+        if len(manifestacoes) > 0:
+            exibirListaFormatada(manifestacoes)
+
         else:
-            print("Código da manifestação não pode ser um texto vazio, tente novamente.")
+            print("Não existe nenhuma manifestação associada a esse código")
+
     else:
         print('O codigo da manifestação deve ser um número inteiro')
 
@@ -127,15 +125,12 @@ def buscarManifestacaoPelaCategoria(conexao):
     if categoriaEscolhida != -1:
         manifestacoes = listarBancoDados(conexao, "SELECT * FROM manifestacoes WHERE categoria = %s;",
                                          [LISTA_CATEGORIAS[int(categoriaEscolhida) - 1]])
-        if categoriaEscolhida != "":
-            if len(manifestacoes) > 0:
-                exibirListaFormatada(manifestacoes)
 
-            else:
-                print("Não existe nenhuma manifestações associadas a essa categoria")
+        if len(manifestacoes) > 0:
+            exibirListaFormatada(manifestacoes)
 
         else:
-            print("Código da categoria não pode ser um texto vazio, tente novamente.")
+            print("Não existe nenhuma manifestações associadas a essa categoria")
 
     else:
         print('Categoria inválida')
