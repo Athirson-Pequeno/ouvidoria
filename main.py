@@ -1,13 +1,33 @@
-from controleDB import *
-from operacoesDB import *
+# PROGRAMAR EM LINGUAGEM ESTRUTURADA - NOITE
+#
+# EQUIPE
+#     Antenor de Queiroz Brito Neto
+#     Athirson Souza Pequeno
+#     Camilla Souza da Silva
+#     Fabiano Lucio da Silva Brito
+#     Kaique Bezerra de Oliveira
+#     Lessandro Costa de Freitas
+#     Millena Nunes Dantas
+#     Pedro Jorge Marques Pereira
+
+
+#Modelo da tabela usada
+
+# CREATE TABLE `manifestacoes` (
+#   `codigo` int NOT NULL AUTO_INCREMENT,
+#   `descricao` varchar(200) DEFAULT NULL,
+#   `categoria` varchar(45) DEFAULT NULL,
+#   `autor` varchar(45) DEFAULT NULL,
+#   PRIMARY KEY (`codigo`)
+# )
+
+from controleBD import *
+from operacoesBD import *
 
 conexao = criarConexao("localhost", "root", "36412", "ouvidoria")
 
-nomeTabela = "manifestacao"
 opcao = "1"
-manifestacoes = []
 
-#Cria um looping de repetição (usando while) que exibe o menu, esse menu aparece enquanto o usuario não esolhe a opção de sair (opção 7)
 while opcao != "7":
     opcao = input("\nO que deseja fazer? \n"
                   "\n• 1) Listagem das manifestações."
