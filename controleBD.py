@@ -13,7 +13,7 @@ def exibirListaFormatada(manifestacoes):
 
 def exibirCategoriasParaEscolha():
 
-    print("Escolha uma categoria.")
+    print('Escolha uma categoria.')
 
     for item in range(len(LISTA_CATEGORIAS)):
         print('     ', str(item + 1), '-', LISTA_CATEGORIAS[item])
@@ -30,59 +30,59 @@ def exibirCategoriasParaEscolha():
 
 def listarManifestacoes(conexao):
 
-    manifestacoes = listarBancoDados(conexao, "SELECT * FROM manifestacoes;")
+    manifestacoes = listarBancoDados(conexao, 'SELECT * FROM manifestacoes;')
 
     if len(manifestacoes) > 0:
         exibirListaFormatada(manifestacoes)
 
     else:
-        print("Nenhuma manifestação cadastrada!")
+        print('Nenhuma manifestação cadastrada!')
 
 def cadastrarNovaManifestacao(conexao):
 
     print('Digite os dados pedidos a seguir para cadastrar uma nova manifestação.')
-    autor = input("Autor » ")
+    autor = input('Autor » ')
 
     categoriaEscolhida = exibirCategoriasParaEscolha()
 
-    descricao = input("Descrição » ")
+    descricao = input('Descrição » ')
 
     if descricao == '' or autor == '' or categoriaEscolhida == '':
-        print("Para cadastrar uma nova manifestação você deve preencher todos os campos.")
+        print('Para cadastrar uma nova manifestação você deve preencher todos os campos.')
 
     else:
         if categoriaEscolhida != -1:
             sql = 'INSERT INTO manifestacoes (descricao, autor, categoria) VALUES (%s, %s, %s);'
             valores = [descricao, autor, LISTA_CATEGORIAS[categoriaEscolhida - 1]]
             insertNoBancoDados(conexao, sql, valores)
-            print("Manifestação cadastrada com sucesso!.")
+            print('Manifestação cadastrada com sucesso!.')
 
         else:
             print('Categoria inválida')
 
 def quantidadeDeManifestacoes(conexao):
 
-    quantidade = listarBancoDados(conexao, "SELECT COUNT(*) FROM manifestacoes;")[0][0]
+    quantidade = listarBancoDados(conexao, 'SELECT COUNT(*) FROM manifestacoes;')[0][0]
 
     if quantidade != 0:
-        print("Atualmente temos", str(quantidade), "manifestações cadastradas no sistema.")
+        print('Atualmente temos', str(quantidade), 'manifestações cadastradas no sistema.')
 
     else:
-        print("Nenhuma manifestação cadastrada.")
+        print('Nenhuma manifestação cadastrada.')
 
 def buscarManifestacaoPeloCodigo(conexao):
 
-    codigoDaManifestacao = input("Digite o codigo da manifestação que você deseja buscar. » ")
+    codigoDaManifestacao = input('Digite o codigo da manifestação que você deseja buscar. » ')
 
     if codigoDaManifestacao.isdigit():
 
-        manifestacoes = listarBancoDados(conexao, "SELECT * FROM manifestacoes WHERE codigo = %s;",
+        manifestacoes = listarBancoDados(conexao, 'SELECT * FROM manifestacoes WHERE codigo = %s;',
                                          [codigoDaManifestacao])
         if len(manifestacoes) > 0:
             exibirListaFormatada(manifestacoes)
 
         else:
-            print("Não existe nenhuma manifestação associada a esse código")
+            print('Não existe nenhuma manifestação associada a esse código')
 
     else:
         print('O codigo da manifestação deve ser um número inteiro')
@@ -92,32 +92,32 @@ def buscarManifestacaoPelaCategoria(conexao):
     categoriaEscolhida = exibirCategoriasParaEscolha()
 
     if categoriaEscolhida != -1:
-        manifestacoes = listarBancoDados(conexao, "SELECT * FROM manifestacoes WHERE categoria = %s;",
+        manifestacoes = listarBancoDados(conexao, 'SELECT * FROM manifestacoes WHERE categoria = %s;',
                                          [LISTA_CATEGORIAS[int(categoriaEscolhida) - 1]])
 
         if len(manifestacoes) > 0:
             exibirListaFormatada(manifestacoes)
 
         else:
-            print("Não existe nenhuma manifestações associadas a essa categoria")
+            print('Não existe nenhuma manifestações associadas a essa categoria')
 
     else:
         print('Categoria inválida')
 
 def excluirManifestacaoPeloCodigo(conexao):
 
-    codigoDaManifestacao = input("Digite o codigo da manifestação que você deseja excluir. » ")
+    codigoDaManifestacao = input('Digite o codigo da manifestação que você deseja excluir. » ')
 
     if codigoDaManifestacao.isdigit():
 
-        if codigoDaManifestacao != "":
-            qtdLinhasAfetadas = excluirBancoDados(conexao, "DELETE FROM manifestacoes WHERE codigo = %s;",
+        if codigoDaManifestacao != '':
+            qtdLinhasAfetadas = excluirBancoDados(conexao, 'DELETE FROM manifestacoes WHERE codigo = %s;',
                                                   [codigoDaManifestacao])
 
             if qtdLinhasAfetadas > 0:
-                print("Manifestação excluída com sucesso!")
+                print('Manifestação excluída com sucesso!')
 
             else:
-                print("Não existe nenhuma manifestação associada a esse código")
+                print('Não existe nenhuma manifestação associada a esse código')
     else:
         print('O codigo da manifestação deve ser um número inteiro')
